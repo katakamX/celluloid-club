@@ -2,7 +2,6 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { Oswald, Courier_Prime } from "next/font/google";
 import { useEffect, useState } from "react";
 
@@ -106,76 +105,15 @@ const TicketButton = ({ text, number, href, isPrimary = false, onClick }: any) =
   return <button onClick={onClick} className={baseStyles}>{content}</button>;
 };
 
-/* ================= COMPONENT: WANDERING ICON =================
-const WanderingIcon = ({ children, onCapture, isInteractive = false }: any) => {
-  const [position, setPosition] = useState({ x: 50, y: 50, rotation: 0 });
-  
-  useEffect(() => {
-    const moveIcon = () => {
-      if (typeof window === 'undefined') return;
-      const maxX = window.innerWidth - 80;
-      const maxY = window.innerHeight - 80;
-      setPosition({ 
-        x: Math.random() * maxX, 
-        y: Math.random() * maxY, 
-        rotation: isInteractive ? Math.random() * 60 - 30 : Math.random() * 360 
-      });
-    };
-    
-    const initialTimeout = setTimeout(() => {
-       moveIcon();
-       const interval = setInterval(moveIcon, isInteractive ? 2500 : 3500);
-       return () => clearInterval(interval);
-    }, Math.random() * 1000);
-
-    return () => clearTimeout(initialTimeout);
-  }, [isInteractive]);
-
-  return (
-    <div
-      onClick={(e) => { e.stopPropagation(); if (isInteractive && onCapture) onCapture(); }}
-      className={`fixed transition-all ease-in-out hover:scale-110 
-        ${isInteractive ? 'z-50 cursor-crosshair opacity-100 duration-[2500ms]' : 'z-30 cursor-default opacity-40 hover:opacity-80 duration-[4000ms]'}`}
-      style={{ left: position.x, top: position.y, transform: `rotate(${position.rotation}deg)` }}
-    >
-      {children}
-      {isInteractive && <div className="absolute top-0 right-0 w-2 h-2 bg-red-600 rounded-full animate-pulse shadow-[0_0_5px_rgba(220,38,38,1)]" />}
-    </div>
-  );
-};*/
-
 export default function AboutPage() {
   const [mounted, setMounted] = useState(false);
-  const [isTransitioning, setIsTransitioning] = useState(false);
   const [hoveredImage, setHoveredImage] = useState<string | null>(null);
-  const router = useRouter();
 
   useEffect(() => { setMounted(true); }, []);
-
-  const handleCameraClick = () => {
-    setIsTransitioning(true);
-    setTimeout(() => { router.push("/lead-of-leads"); }, 1200);
-  };
-
-  const svgProps = {
-    width: "48", height: "48", viewBox: "0 0 24 24", fill: "none",
-    stroke: "#1C1A17", strokeWidth: "1.5", strokeLinecap: "round", strokeLinejoin: "round",
-    className: "drop-shadow-lg"
-  };
 
   return (
     <main className={`min-h-screen text-[#1C1A17] relative overflow-hidden selection:bg-[#8B2E2E] selection:text-[#EAD7B0] ${oswald.variable} ${courier.variable}`}>
       
-      {/* ================= TRANSITION OVERLAY ================= */}
-      <div 
-        className={`fixed inset-0 bg-[#1C1A17] z-[100] pointer-events-none transition-all duration-[1200ms] ease-in-out`}
-        style={{ clipPath: isTransitioning ? "circle(150% at 50% 50%)" : "circle(0% at 50% 50%)" }}
-      >
-        <div className={`absolute inset-0 flex items-center justify-center opacity-0 ${isTransitioning ? 'opacity-100 delay-500' : ''} transition-opacity`}>
-             <h2 className="text-[#EAD7B0] font-[family-name:var(--font-courier)] tracking-widest text-xl animate-pulse">LOADING PAGE...</h2>
-        </div>
-      </div>
-
       {/* ================= ATMOSPHERIC LAYERS ================= */}
       <div className="fixed inset-0 bg-gradient-to-b from-[#F5E6C8] via-[#EAD7B0] to-[#C8B085] -z-30" />
       <div className="fixed inset-0 opacity-20 pointer-events-none mix-blend-multiply -z-20" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
@@ -183,18 +121,6 @@ export default function AboutPage() {
       <div className="fixed inset-0 pointer-events-none -z-16 mix-blend-overlay opacity-30 animate-scratch-jitter"><div className="w-full h-full bg-[repeating-linear-gradient(90deg,transparent,transparent_50px,rgba(0,0,0,0.2)_50px,rgba(0,0,0,0.2)_51px)] scale-[2]"></div></div>
       <div className="fixed inset-0 pointer-events-none -z-15 animate-flicker mix-blend-overlay opacity-30 bg-[url('https://www.transparenttextures.com/patterns/dust.png')]"></div>
       <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.45)_100%)] pointer-events-none -z-10" />
-
-      {/* ================= WANDERING ICONS ================= */}
-      {mounted && !isTransitioning && (
-        <WanderingIcon isInteractive={true} onCapture={handleCameraClick}>
-           <svg {...svgProps} className={`${svgProps.className} fill-[#EAD7B0]`}>
-             <path d="M5 12h14" />
-             <path d="M5 12l4-8h6l4 8" />
-             <path d="M5 21l7-9 7 9" />
-             <path d="M5 21h14" />
-          </svg>
-        </WanderingIcon>
-      )}
 
       {/* ================= CONTENT ================= */}
       <section className={`min-h-[80vh] flex flex-col items-center justify-center text-center px-6 relative py-20 transition-opacity duration-1000 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
@@ -245,7 +171,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ROLLING CREDITS (FLEXBOX FIX APPLIED) */}
+      {/* ROLLING CREDITS */}
       <section className="py-32 px-4 relative z-10">
         <div className="max-w-5xl mx-auto">
           
