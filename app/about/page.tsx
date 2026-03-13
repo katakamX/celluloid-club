@@ -21,7 +21,7 @@ const courier = Courier_Prime({
 
 // ================= TEAM DATA =================
 const teamMembers = [
-  { role: "Mentor", name: "Aravind KS", image: "/team/aravind.jpg" },
+  
   { role: "Lead", name: "Yathin Girish", image: "/team/Yathin Girish.jpeg" },
   { role: "Co-Lead", name: "Kishan Thayil", image: "/team/kishan.jpg" },
   { role: "Lead of leads", name: "Adithya Katakam", image: "/team/aditya.jpg" },
