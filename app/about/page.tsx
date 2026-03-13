@@ -21,6 +21,7 @@ const courier = Courier_Prime({
 
 // ================= TEAM DATA =================
 const teamMembers = [
+  
   { role: "Lead", name: "Yathin Girish", image: "/team/Yathin Girish.jpeg" },
   { role: "Co-Lead", name: "Kishan Thayil", image: "/team/kishan.jpg" },
   { role: "Lead of leads", name: "Aditya Katakam", image: "/team/aditya.jpg" },
@@ -186,7 +187,7 @@ export default function AboutPage() {
       {/* ================= FLOATING IMAGE REVEAL (FILM STRIP) ================= */}
       <div className="pointer-events-none fixed inset-0 z-0 flex items-center justify-center lg:justify-end lg:pr-32 transition-opacity duration-700">
         <div 
-          className={`relative w-[280px] h-[360px] md:w-[320px] md:h-[440px] shrink-0 overflow-hidden bg-[#111] shadow-2xl transition-all duration-700 ease-out transform ${
+          className={`relative w-72 h-[22rem] md:w-80 md:h-[28rem] bg-[#111] shadow-2xl transition-all duration-700 ease-out transform ${
             hoveredImage ? "opacity-100 scale-100 translate-x-0 rotate-1" : "opacity-0 scale-95 translate-x-8 -rotate-2"
           }`}
         >
@@ -287,19 +288,18 @@ export default function AboutPage() {
 
       {/* ROLLING CREDITS */}
       <section className="py-32 px-4 relative z-10">
-        {/* Widened the max-w container slightly to give it more breathing room */}
-        <div className="max-w-6xl mx-auto px-4 md:px-8">
-          <div className="text-left mb-16">
+        {/* We use strict max-width to force Vercel to obey the boundaries */}
+        <div className="mx-auto" style={{ maxWidth: '800px' }}>
+          <div className="text-center mb-16">
             <h2 className="font-[family-name:var(--font-oswald)] text-5xl md:text-6xl uppercase tracking-tight relative inline-block">
               Crew Roster
-              <span className="absolute -top-6 -right-8 text-sm font-[family-name:var(--font-courier)] text-[#8B2E2E] rotate-12 border border-[#8B2E2E] px-2 py-1">SEASON 01</span>
+              <span className="absolute -top-6 -right-6 text-sm font-[family-name:var(--font-courier)] text-[#8B2E2E] rotate-12 border border-[#8B2E2E] px-2 py-1">SEASON 01</span>
             </h2>
             <p className="font-[family-name:var(--font-courier)] mt-4 text-sm tracking-widest uppercase opacity-60">Production Unit 01</p>
           </div>
 
           <div className="relative h-[60vh] overflow-hidden mask-image-fade group">
-            {/* THE FIX: Added lg:w-[55%] so the text stops halfway across the screen */}
-            <div className="absolute top-0 left-0 w-full lg:w-[55%] flex flex-col gap-6 pb-[60vh] animate-credits-roll group-hover:[animation-play-state:paused]">
+            <div className="absolute top-0 left-0 w-full flex flex-col gap-6 pb-[60vh] animate-credits-roll group-hover:[animation-play-state:paused]">
               {teamMembers.map((person, idx) => (
                 <div
                   key={idx}
@@ -310,12 +310,12 @@ export default function AboutPage() {
                   <span className="font-[family-name:var(--font-courier)] text-xs md:text-sm text-[#1C1A17]/60 uppercase tracking-widest w-1/2 mb-1 md:mb-0 transition-colors duration-300 group-hover:text-[#8B2E2E]">
                     {person.role || "---"}
                   </span>
-                  <span className="font-[family-name:var(--font-oswald)] text-xl md:text-3xl uppercase tracking-wider text-[#1C1A17] transition-colors duration-300 group-hover:text-[#8B2E2E] text-right md:text-left">
+                  <span className="font-[family-name:var(--font-oswald)] text-xl md:text-3xl uppercase tracking-wider text-[#1C1A17] transition-colors duration-300 group-hover:text-[#8B2E2E]">
                     {person.name}
                   </span>
                 </div>
               ))}
-              <div className="text-left mt-24 text-[#1C1A17]/50 font-[family-name:var(--font-courier)] text-sm tracking-widest uppercase">
+              <div className="text-center mt-24 text-[#1C1A17]/50 font-[family-name:var(--font-courier)] text-sm tracking-widest uppercase">
                 ❖ End of Roster
               </div>
             </div>
