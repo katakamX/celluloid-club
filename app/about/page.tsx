@@ -21,10 +21,10 @@ const courier = Courier_Prime({
 
 // ================= TEAM DATA =================
 const teamMembers = [
-  
+  { role: "Mentor", name: "Aravind KS", image: "/team/aravind.jpg" },
   { role: "Lead", name: "Yathin Girish", image: "/team/Yathin Girish.jpeg" },
   { role: "Co-Lead", name: "Kishan Thayil", image: "/team/kishan.jpg" },
-  { role: "Lead of leads", name: "Aditya Katakam", image: "/team/aditya.jpg" },
+  { role: "Lead of leads", name: "Adithya Katakam", image: "/team/aditya.jpg" },
   { role: "Production Support & Admin", name: "Darin Raoul John", image: "/team/darin.jpeg" },
   { role: "Cinematographer", name: "Vishwajith Pradosh Kumar", image: "/team/vishwajit.jpg" },
   { role: "Writer & Production Support", name: "Nayab Ali", image: "/team/nayab.jpg" },
@@ -184,47 +184,6 @@ export default function AboutPage() {
       <div className="fixed inset-0 pointer-events-none -z-15 animate-flicker mix-blend-overlay opacity-30 bg-[url('https://www.transparenttextures.com/patterns/dust.png')]"></div>
       <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.45)_100%)] pointer-events-none -z-10" />
 
-      {/* ================= FLOATING IMAGE REVEAL (FILM STRIP) ================= */}
-      <div className="pointer-events-none fixed inset-0 z-0 flex items-center justify-center lg:justify-end lg:pr-32 transition-opacity duration-700">
-        <div 
-          className={`relative w-72 h-[22rem] md:w-80 md:h-[28rem] bg-[#111] shadow-2xl transition-all duration-700 ease-out transform ${
-            hoveredImage ? "opacity-100 scale-100 translate-x-0 rotate-1" : "opacity-0 scale-95 translate-x-8 -rotate-2"
-          }`}
-        >
-          {hoveredImage && (
-            <>
-              {/* Left Sprocket Holes */}
-              <div className="absolute left-1.5 top-3 bottom-3 flex flex-col justify-between z-20">
-                {[...Array(10)].map((_, i) => (
-                  <div key={`left-${i}`} className="w-2.5 h-3.5 bg-[#EAD7B0]/30 rounded-[1px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.8)]" />
-                ))}
-              </div>
-
-              {/* Right Sprocket Holes */}
-              <div className="absolute right-1.5 top-3 bottom-3 flex flex-col justify-between z-20">
-                {[...Array(10)].map((_, i) => (
-                  <div key={`right-${i}`} className="w-2.5 h-3.5 bg-[#EAD7B0]/30 rounded-[1px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.8)]" />
-                ))}
-              </div>
-
-              {/* Image Container */}
-              <div className="absolute inset-y-0 left-6 right-6">
-                <img
-                  src={hoveredImage}
-                  alt="Crew Member"
-                  className="object-cover w-full h-full grayscale contrast-125 brightness-90 opacity-90"
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=800&auto=format&fit=crop&grayscale=true";
-                  }}
-                />
-                {/* Film Grade Overlay */}
-                <div className="absolute inset-0 bg-[#EAD7B0]/10 mix-blend-multiply border-x border-[#1C1A17]/50 pointer-events-none" />
-              </div>
-            </>
-          )}
-        </div>
-      </div>
-
       {/* ================= WANDERING ICONS ================= */}
       {mounted && !isTransitioning && (
         <WanderingIcon isInteractive={true} onCapture={handleCameraClick}>
@@ -286,10 +245,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ROLLING CREDITS */}
+      {/* ROLLING CREDITS (FLEXBOX FIX APPLIED) */}
       <section className="py-32 px-4 relative z-10">
-        {/* We use strict max-width to force Vercel to obey the boundaries */}
-        <div className="mx-auto" style={{ maxWidth: '800px' }}>
+        <div className="max-w-5xl mx-auto">
+          
+          {/* Header */}
           <div className="text-center mb-16">
             <h2 className="font-[family-name:var(--font-oswald)] text-5xl md:text-6xl uppercase tracking-tight relative inline-block">
               Crew Roster
@@ -298,27 +258,72 @@ export default function AboutPage() {
             <p className="font-[family-name:var(--font-courier)] mt-4 text-sm tracking-widest uppercase opacity-60">Production Unit 01</p>
           </div>
 
-          <div className="relative h-[60vh] overflow-hidden mask-image-fade group">
-            <div className="absolute top-0 left-0 w-full flex flex-col gap-6 pb-[60vh] animate-credits-roll group-hover:[animation-play-state:paused]">
-              {teamMembers.map((person, idx) => (
-                <div
-                  key={idx}
-                  onMouseEnter={() => setHoveredImage(person.image)}
-                  onMouseLeave={() => setHoveredImage(null)}
-                  className="flex flex-col md:flex-row md:items-baseline justify-between border-b border-[#1C1A17]/20 pb-4 cursor-crosshair transition-colors duration-300 hover:border-[#8B2E2E]"
-                >
-                  <span className="font-[family-name:var(--font-courier)] text-xs md:text-sm text-[#1C1A17]/60 uppercase tracking-widest w-1/2 mb-1 md:mb-0 transition-colors duration-300 group-hover:text-[#8B2E2E]">
-                    {person.role || "---"}
-                  </span>
-                  <span className="font-[family-name:var(--font-oswald)] text-xl md:text-3xl uppercase tracking-wider text-[#1C1A17] transition-colors duration-300 group-hover:text-[#8B2E2E]">
-                    {person.name}
-                  </span>
+          {/* Grid: credits left, film strip right */}
+          <div className="flex gap-8 items-start justify-center">
+            
+            {/* CREDITS SCROLL */}
+            <div className="w-full max-w-[600px] shrink-0">
+              <div className="relative h-[min(60vh,500px)] overflow-hidden mask-image-fade group">
+                <div className="absolute top-0 left-0 w-full flex flex-col gap-6 pb-[500px] animate-credits-roll group-hover:[animation-play-state:paused]">
+                  {teamMembers.map((person, idx) => (
+                    <div
+                      key={idx}
+                      onMouseEnter={() => setHoveredImage(person.image)}
+                      onMouseLeave={() => setHoveredImage(null)}
+                      className="flex flex-col md:flex-row md:items-baseline justify-between border-b border-[#1C1A17]/20 pb-4 cursor-crosshair transition-colors duration-300 hover:border-[#8B2E2E]"
+                    >
+                      <span className="font-[family-name:var(--font-courier)] text-xs md:text-sm text-[#1C1A17]/60 uppercase tracking-widest w-1/2 mb-1 md:mb-0 transition-colors duration-300 group-hover:text-[#8B2E2E] text-left">
+                        {person.role || "---"}
+                      </span>
+                      <span className="font-[family-name:var(--font-oswald)] text-xl md:text-3xl uppercase tracking-wider text-[#1C1A17] transition-colors duration-300 group-hover:text-[#8B2E2E] text-right">
+                        {person.name}
+                      </span>
+                    </div>
+                  ))}
+                  <div className="text-center mt-24 text-[#1C1A17]/50 font-[family-name:var(--font-courier)] text-sm tracking-widest uppercase">
+                    ❖ End of Roster
+                  </div>
                 </div>
-              ))}
-              <div className="text-center mt-24 text-[#1C1A17]/50 font-[family-name:var(--font-courier)] text-sm tracking-widest uppercase">
-                ❖ End of Roster
               </div>
             </div>
+
+            {/* FILM STRIP - sits in its own column, never overlaps */}
+            <div className="hidden lg:block shrink-0 sticky top-1/4">
+              <div
+                style={{ width: '220px', height: '380px' }}
+                className={`relative overflow-hidden bg-[#111] shadow-2xl transition-all duration-700 ease-out transform ${
+                  hoveredImage ? "opacity-100 scale-100 rotate-1" : "opacity-0 scale-95 -rotate-2 pointer-events-none"
+                }`}
+              >
+                {/* Left Sprocket Holes */}
+                <div className="absolute left-2 top-3 bottom-3 flex flex-col justify-between z-20">
+                  {[...Array(10)].map((_, i) => (
+                    <div key={`left-${i}`} className="w-2.5 h-3.5 bg-[#EAD7B0]/30 rounded-[1px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.8)]" />
+                  ))}
+                </div>
+                {/* Right Sprocket Holes */}
+                <div className="absolute right-2 top-3 bottom-3 flex flex-col justify-between z-20">
+                  {[...Array(10)].map((_, i) => (
+                    <div key={`right-${i}`} className="w-2.5 h-3.5 bg-[#EAD7B0]/30 rounded-[1px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.8)]" />
+                  ))}
+                </div>
+                {/* Image */}
+                <div style={{ position: 'absolute', top: 0, bottom: 0, left: '28px', right: '28px' }}>
+                  {hoveredImage && (
+                    <img
+                      src={hoveredImage}
+                      alt="Crew Member"
+                      className="object-cover w-full h-full grayscale contrast-125 brightness-90 opacity-90"
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=800&auto=format&fit=crop&grayscale=true";
+                      }}
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-[#EAD7B0]/10 mix-blend-multiply border-x border-[#1C1A17]/50 pointer-events-none" />
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
@@ -345,8 +350,10 @@ export default function AboutPage() {
           mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
           -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
         }
+        
+        /* Container-relative movement (%) starting exactly at 500px to fix delay */
         @keyframes creditsRoll {
-          0% { transform: translateY(60vh); }
+          0% { transform: translateY(500px); }
           100% { transform: translateY(-100%); }
         }
         .animate-credits-roll {
