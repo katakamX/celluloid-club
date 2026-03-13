@@ -21,7 +21,6 @@ const courier = Courier_Prime({
 
 // ================= TEAM DATA =================
 const teamMembers = [
-  
   { role: "Lead", name: "Yathin Girish", image: "/team/Yathin Girish.jpeg" },
   { role: "Co-Lead", name: "Kishan Thayil", image: "/team/kishan.jpg" },
   { role: "Lead of leads", name: "Aditya Katakam", image: "/team/aditya.jpg" },
@@ -187,7 +186,7 @@ export default function AboutPage() {
       {/* ================= FLOATING IMAGE REVEAL (FILM STRIP) ================= */}
       <div className="pointer-events-none fixed inset-0 z-0 flex items-center justify-center lg:justify-end lg:pr-32 transition-opacity duration-700">
         <div 
-          className={`relative w-72 h-[22rem] md:w-80 md:h-[28rem] bg-[#111] shadow-2xl transition-all duration-700 ease-out transform ${
+          className={`relative w-[280px] h-[360px] md:w-[320px] md:h-[440px] shrink-0 overflow-hidden bg-[#111] shadow-2xl transition-all duration-700 ease-out transform ${
             hoveredImage ? "opacity-100 scale-100 translate-x-0 rotate-1" : "opacity-0 scale-95 translate-x-8 -rotate-2"
           }`}
         >
