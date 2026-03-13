@@ -287,17 +287,19 @@ export default function AboutPage() {
 
       {/* ROLLING CREDITS */}
       <section className="py-32 px-4 relative z-10">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-16">
+        {/* Widened the max-w container slightly to give it more breathing room */}
+        <div className="max-w-6xl mx-auto px-4 md:px-8">
+          <div className="text-left mb-16">
             <h2 className="font-[family-name:var(--font-oswald)] text-5xl md:text-6xl uppercase tracking-tight relative inline-block">
               Crew Roster
-              <span className="absolute -top-6 -right-6 text-sm font-[family-name:var(--font-courier)] text-[#8B2E2E] rotate-12 border border-[#8B2E2E] px-2 py-1">SEASON 01</span>
+              <span className="absolute -top-6 -right-8 text-sm font-[family-name:var(--font-courier)] text-[#8B2E2E] rotate-12 border border-[#8B2E2E] px-2 py-1">SEASON 01</span>
             </h2>
             <p className="font-[family-name:var(--font-courier)] mt-4 text-sm tracking-widest uppercase opacity-60">Production Unit 01</p>
           </div>
 
           <div className="relative h-[60vh] overflow-hidden mask-image-fade group">
-            <div className="absolute top-0 left-0 w-full flex flex-col gap-6 pb-[60vh] animate-credits-roll group-hover:[animation-play-state:paused]">
+            {/* THE FIX: Added lg:w-[55%] so the text stops halfway across the screen */}
+            <div className="absolute top-0 left-0 w-full lg:w-[55%] flex flex-col gap-6 pb-[60vh] animate-credits-roll group-hover:[animation-play-state:paused]">
               {teamMembers.map((person, idx) => (
                 <div
                   key={idx}
@@ -308,12 +310,12 @@ export default function AboutPage() {
                   <span className="font-[family-name:var(--font-courier)] text-xs md:text-sm text-[#1C1A17]/60 uppercase tracking-widest w-1/2 mb-1 md:mb-0 transition-colors duration-300 group-hover:text-[#8B2E2E]">
                     {person.role || "---"}
                   </span>
-                  <span className="font-[family-name:var(--font-oswald)] text-xl md:text-3xl uppercase tracking-wider text-[#1C1A17] transition-colors duration-300 group-hover:text-[#8B2E2E]">
+                  <span className="font-[family-name:var(--font-oswald)] text-xl md:text-3xl uppercase tracking-wider text-[#1C1A17] transition-colors duration-300 group-hover:text-[#8B2E2E] text-right md:text-left">
                     {person.name}
                   </span>
                 </div>
               ))}
-              <div className="text-center mt-24 text-[#1C1A17]/50 font-[family-name:var(--font-courier)] text-sm tracking-widest uppercase">
+              <div className="text-left mt-24 text-[#1C1A17]/50 font-[family-name:var(--font-courier)] text-sm tracking-widest uppercase">
                 ❖ End of Roster
               </div>
             </div>
