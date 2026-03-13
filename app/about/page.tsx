@@ -24,7 +24,7 @@ const teamMembers = [
   
   { role: "Lead", name: "Yathin Girish", image: "/team/Yathin Girish.jpeg" },
   { role: "Co-Lead", name: "Kishan Thayil", image: "/team/kishan.jpg" },
-  { role: "Lead of leads", name: "Adithya Katakam", image: "/team/aditya.jpg" },
+  { role: "Lead of leads", name: "Aditya Katakam", image: "/team/aditya.jpg" },
   { role: "Production Support & Admin", name: "Darin Raoul John", image: "/team/darin.jpeg" },
   { role: "Cinematographer", name: "Vishwajith Pradosh Kumar", image: "/team/vishwajit.jpg" },
   { role: "Writer & Production Support", name: "Nayab Ali", image: "/team/nayab.jpg" },
