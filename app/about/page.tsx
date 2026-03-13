@@ -106,7 +106,7 @@ const TicketButton = ({ text, number, href, isPrimary = false, onClick }: any) =
   return <button onClick={onClick} className={baseStyles}>{content}</button>;
 };
 
-// ================= COMPONENT: WANDERING ICON =================
+/* ================= COMPONENT: WANDERING ICON =================
 const WanderingIcon = ({ children, onCapture, isInteractive = false }: any) => {
   const [position, setPosition] = useState({ x: 50, y: 50, rotation: 0 });
   
@@ -142,7 +142,7 @@ const WanderingIcon = ({ children, onCapture, isInteractive = false }: any) => {
       {isInteractive && <div className="absolute top-0 right-0 w-2 h-2 bg-red-600 rounded-full animate-pulse shadow-[0_0_5px_rgba(220,38,38,1)]" />}
     </div>
   );
-};
+};*/
 
 export default function AboutPage() {
   const [mounted, setMounted] = useState(false);
