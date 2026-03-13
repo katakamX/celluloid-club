@@ -19,8 +19,56 @@ const courier = Courier_Prime({
   variable: "--font-courier",
 });
 
+// ================= TEAM DATA =================
+const teamMembers = [
+  
+  { role: "Lead", name: "Yathin Girish", image: "/team/Yathin Girish.jpeg" },
+  { role: "Co-Lead", name: "Kishan Thayil", image: "/team/kishan.jpg" },
+  { role: "Lead of leads", name: "Aditya Katakam", image: "/team/aditya.jpg" },
+  { role: "Production Support & Admin", name: "Darin Raoul John", image: "/team/darin.jpeg" },
+  { role: "Cinematographer", name: "Vishwajith Pradosh Kumar", image: "/team/vishwajit.jpg" },
+  { role: "Writer & Production Support", name: "Nayab Ali", image: "/team/nayab.jpg" },
+  { role: "Music", name: "Alenchristo Joby", image: "/team/alenchristo.jpeg" },
+  { role: "Actor & Production Support", name: "Rohith Sreekumar", image: "/team/rohith.jpeg" },
+  { role: "Production Support", name: "Brayon Tomy", image: "/team/brayon.jpeg" },
+  { role: "Production Support", name: "Chetan", image: "/team/chetan.jpeg" },
+  { role: "Cinematographer", name: "Bhavan", image: "/team/bhavan.jpeg" },
+  { role: "Logistics", name: "Suriya", image: "/team/suriya.jpg" },
+  { role: "Logistics", name: "Krithick", image: "/team/krithick.jpg" },
+  { role: "Production Support", name: "Dinishita", image: "/team/dinishita.jpg" },
+  { role: "Actor", name: "Harshith", image: "/team/harshith.jpeg" },
+  { role: "Actor", name: "Dikshita", image: "/team/dikshita.jpg" },
+  { role: "Actor", name: "Aditi", image: "/team/aditi.jpg" },
+  { role: "Actor", name: "Sanuj Satish Kumar", image: "/team/sanuj.jpeg" },
+  { role: "Actor", name: "Vaibhav Jain", image: "/team/vaibhav.jpeg" },
+  { role: "Actor", name: "Divyanshu", image: "/team/divyanshu.jpg" },
+  { role: "Actor", name: "Sanidhi", image: "/team/sanidhi.jpeg" },
+  { role: "Direction", name: "Vishal Tejas", image: "/team/vishal.jpeg" },
+  { role: "Content Writing", name: "Mani Pushpam", image: "/team/mani.jpeg" },
+  { role: "Actor", name: "Vishal Mani", image: "/team/vishaal.jpeg" },
+  { role: "Sound design", name: "Rohan", image: "/team/rohan.jpg" },
+  { role: "Writer", name: "Palakh Kaushal", image: "/team/palakh.png" },
+  { role: "Writer", name: "Prit Thacker", image: "/team/prit.jpeg" },
+  { role: "Writer", name: "V Krishna Kishore", image: "/team/krishna.jpg" },
+  { role: "Writer", name: "S Dhanush Babu", image: "/team/dhanush.jpeg" },
+  { role: "Writer", name: "J Santosh", image: "/team/santosh.jpg" },
+  { role: "Editor", name: "Sukrut Kulkarni", image: "/team/sukrut.jpeg" },
+  { role: "Actor", name: "Pushkar", image: "/team/pushkar.jpg" },
+  { role: "Editing", name: "Safwan", image: "/team/safwan.jpeg" },
+  { role: "Editing", name: "Ronan", image: "/team/ronan.PNG" },
+  { role: "Editing", name: "Shaik", image: "/team/Shaik Mohammed.jpeg" },
+  { role: "Writer", name: "Rithika pappa", image: "/team/rithika.jpg" },
+  { role: "Writer", name: "Sanchita Singh", image: "/team/sanchita.jpg" },
+  { role: "Writer", name: "Julika ranjan", image: "/team/julika.jpg" },
+  { role: "Writer", name: "Nikhil Sunil", image: "/team/nikhil.jpeg" },
+  { role: "Writer", name: "Kashish Singh", image: "/team/kashish.jpeg" },
+  { role: "Writer", name: "Sai sahasra", image: "/team/Sai Sahasra Vaibhavi.jpeg" },
+  { role: "Cinematographer", name: "Haresh", image: "/team/haresh.jpeg" },
+  { role: "Cinematographer", name: "Praveen Kumar N", image: "/team/praveen.jpeg" },
+];
+
 // ================= COMPONENT: TICKET BUTTON =================
-const TicketButton = ({ text, number, href, isPrimary = false, onClick }) => {
+const TicketButton = ({ text, number, href, isPrimary = false, onClick }: any) => {
   const baseStyles = `
     group relative flex items-center justify-between
     h-16 px-6 
@@ -35,7 +83,7 @@ const TicketButton = ({ text, number, href, isPrimary = false, onClick }) => {
     WebkitMaskImage: `radial-gradient(circle at left center, transparent 8px, black 8.5px), radial-gradient(circle at right center, transparent 8px, black 8.5px)`,
     maskComposite: "exclude",
     WebkitMaskComposite: "source-in",
-  };
+  } as React.CSSProperties;
 
   const content = (
     <div
@@ -59,7 +107,7 @@ const TicketButton = ({ text, number, href, isPrimary = false, onClick }) => {
 };
 
 // ================= COMPONENT: WANDERING ICON =================
-const WanderingIcon = ({ children, onCapture, isInteractive = false }) => {
+const WanderingIcon = ({ children, onCapture, isInteractive = false }: any) => {
   const [position, setPosition] = useState({ x: 50, y: 50, rotation: 0 });
   
   useEffect(() => {
@@ -99,6 +147,7 @@ const WanderingIcon = ({ children, onCapture, isInteractive = false }) => {
 export default function AboutPage() {
   const [mounted, setMounted] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [hoveredImage, setHoveredImage] = useState<string | null>(null);
   const router = useRouter();
 
   useEffect(() => { setMounted(true); }, []);
@@ -115,7 +164,6 @@ export default function AboutPage() {
   };
 
   return (
-    // FIX 1: Removed bg-[#EAD7B0] from main so transparency works
     <main className={`min-h-screen text-[#1C1A17] relative overflow-hidden selection:bg-[#8B2E2E] selection:text-[#EAD7B0] ${oswald.variable} ${courier.variable}`}>
       
       {/* ================= TRANSITION OVERLAY ================= */}
@@ -128,26 +176,54 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* ================= ATMOSPHERIC LAYERS (MATCHING HOME) ================= */}
-      
-      {/* 1. Base Gradient */}
+      {/* ================= ATMOSPHERIC LAYERS ================= */}
       <div className="fixed inset-0 bg-gradient-to-b from-[#F5E6C8] via-[#EAD7B0] to-[#C8B085] -z-30" />
-      
-      {/* 2. Film Grain (SVG Noise) */}
       <div className="fixed inset-0 opacity-20 pointer-events-none mix-blend-multiply -z-20" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")` }} />
-      
-      {/* 3. Projector Beam */}
       <div className="fixed inset-0 pointer-events-none -z-18 mix-blend-soft-light opacity-40 animate-beam-rotate overflow-hidden"><div className="absolute top-[-50%] left-[-50%] right-[-50%] bottom-[-50%] bg-[conic-gradient(from_0deg_at_50%_50%,transparent_45%,rgba(255,245,220,0.3)_50%,transparent_55%)]"></div></div>
-      
-      {/* 4. Scratches */}
       <div className="fixed inset-0 pointer-events-none -z-16 mix-blend-overlay opacity-30 animate-scratch-jitter"><div className="w-full h-full bg-[repeating-linear-gradient(90deg,transparent,transparent_50px,rgba(0,0,0,0.2)_50px,rgba(0,0,0,0.2)_51px)] scale-[2]"></div></div>
-      
-      {/* 5. Dust & Flicker (This was missing from your About page snippet) */}
       <div className="fixed inset-0 pointer-events-none -z-15 animate-flicker mix-blend-overlay opacity-30 bg-[url('https://www.transparenttextures.com/patterns/dust.png')]"></div>
-      
-      {/* 6. Vignette */}
       <div className="fixed inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.45)_100%)] pointer-events-none -z-10" />
 
+      {/* ================= FLOATING IMAGE REVEAL (FILM STRIP) ================= */}
+      <div className="pointer-events-none fixed inset-0 z-0 flex items-center justify-center lg:justify-end lg:pr-32 transition-opacity duration-700">
+        <div 
+          className={`relative w-72 h-[22rem] md:w-80 md:h-[28rem] bg-[#111] shadow-2xl transition-all duration-700 ease-out transform ${
+            hoveredImage ? "opacity-100 scale-100 translate-x-0 rotate-1" : "opacity-0 scale-95 translate-x-8 -rotate-2"
+          }`}
+        >
+          {hoveredImage && (
+            <>
+              {/* Left Sprocket Holes */}
+              <div className="absolute left-1.5 top-3 bottom-3 flex flex-col justify-between z-20">
+                {[...Array(10)].map((_, i) => (
+                  <div key={`left-${i}`} className="w-2.5 h-3.5 bg-[#EAD7B0]/30 rounded-[1px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.8)]" />
+                ))}
+              </div>
+
+              {/* Right Sprocket Holes */}
+              <div className="absolute right-1.5 top-3 bottom-3 flex flex-col justify-between z-20">
+                {[...Array(10)].map((_, i) => (
+                  <div key={`right-${i}`} className="w-2.5 h-3.5 bg-[#EAD7B0]/30 rounded-[1px] shadow-[inset_0_1px_3px_rgba(0,0,0,0.8)]" />
+                ))}
+              </div>
+
+              {/* Image Container */}
+              <div className="absolute inset-y-0 left-6 right-6">
+                <img
+                  src={hoveredImage}
+                  alt="Crew Member"
+                  className="object-cover w-full h-full grayscale contrast-125 brightness-90 opacity-90"
+                  onError={(e) => {
+                    (e.target as HTMLImageElement).src = "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=800&auto=format&fit=crop&grayscale=true";
+                  }}
+                />
+                {/* Film Grade Overlay */}
+                <div className="absolute inset-0 bg-[#EAD7B0]/10 mix-blend-multiply border-x border-[#1C1A17]/50 pointer-events-none" />
+              </div>
+            </>
+          )}
+        </div>
+      </div>
 
       {/* ================= WANDERING ICONS ================= */}
       {mounted && !isTransitioning && (
@@ -197,7 +273,7 @@ export default function AboutPage() {
           </h2>
           <div className="font-[family-name:var(--font-courier)] text-lg md:text-xl leading-relaxed space-y-6 text-[#1C1A17]">
             <p>
-              <span className="font-bold uppercase tracking-wider bg-black text-white px-1 mr-2">EXT. DAY.</span> 
+              <span className="font-bold uppercase tracking-wider bg-[#1C1A17] text-[#EAD7B0] px-1 mr-2">EXT. DAY.</span> 
               We believe filmmaking is not just about cameras and cuts. It is about intention.
             </p>
             <p>
@@ -210,52 +286,38 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* MEMBERS */}
+      {/* ROLLING CREDITS */}
       <section className="py-32 px-4 relative z-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-16">
             <h2 className="font-[family-name:var(--font-oswald)] text-5xl md:text-6xl uppercase tracking-tight relative inline-block">
-              The Team
+              Crew Roster
               <span className="absolute -top-6 -right-6 text-sm font-[family-name:var(--font-courier)] text-[#8B2E2E] rotate-12 border border-[#8B2E2E] px-2 py-1">SEASON 01</span>
             </h2>
             <p className="font-[family-name:var(--font-courier)] mt-4 text-sm tracking-widest uppercase opacity-60">Production Unit 01</p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-            {[
-              { role: "---", name: "yathin girish kumar" },
-              { role: "-----", name: "Kishan" },
-              { role: "--", name: "Raoul" },
-            ].map((member, index) => (
-              <div key={index} className="group relative transition-all duration-500 hover:-translate-y-4 hover:rotate-1">
-                <div className="bg-[#151515] p-2 pb-12 relative shadow-2xl overflow-hidden">
-                  <div className="absolute left-1 top-0 bottom-0 flex flex-col justify-between py-1 gap-1 z-20">
-                    {[...Array(8)].map((_, i) => <div key={i} className="w-4 h-5 bg-[#EAD7B0] rounded-[2px] opacity-90" />)}
-                  </div>
-                  <div className="absolute right-1 top-0 bottom-0 flex flex-col justify-between py-1 gap-1 z-20">
-                    {[...Array(8)].map((_, i) => <div key={i} className="w-4 h-5 bg-[#EAD7B0] rounded-[2px] opacity-90" />)}
-                  </div>
-                  <div className="mx-8 mt-4 bg-[#2a2a2a] aspect-[3/4] relative overflow-hidden group-hover:shadow-[0_0_20px_rgba(255,255,255,0.1)] transition-all">
-                    <div className="absolute inset-0 bg-neutral-800 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all duration-500">
-                      <span className="font-[family-name:var(--font-oswald)] text-8xl text-white/5 group-hover:text-white/20 transition-all">IMG</span>
-                    </div>
-                    <div className="absolute top-4 right-4 flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        <div className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
-                        <span className="text-[10px] font-[family-name:var(--font-courier)] text-red-600 font-bold tracking-widest">REC</span>
-                    </div>
-                  </div>
-                  <div className="text-center px-8 mt-6 relative z-20">
-                    <h3 className="font-[family-name:var(--font-oswald)] text-2xl uppercase text-[#F5E6C8] tracking-widest group-hover:text-[#8B2E2E] transition-colors">
-                      {member.name}
-                    </h3>
-                    <div className="h-[1px] w-full bg-white/20 my-2" />
-                    <p className="font-[family-name:var(--font-courier)] text-xs text-white/50 uppercase tracking-[0.2em]">
-                      // {member.role}
-                    </p>
-                  </div>
+          <div className="relative h-[60vh] overflow-hidden mask-image-fade group">
+            <div className="absolute top-0 left-0 w-full flex flex-col gap-6 pb-[60vh] animate-credits-roll group-hover:[animation-play-state:paused]">
+              {teamMembers.map((person, idx) => (
+                <div
+                  key={idx}
+                  onMouseEnter={() => setHoveredImage(person.image)}
+                  onMouseLeave={() => setHoveredImage(null)}
+                  className="flex flex-col md:flex-row md:items-baseline justify-between border-b border-[#1C1A17]/20 pb-4 cursor-crosshair transition-colors duration-300 hover:border-[#8B2E2E]"
+                >
+                  <span className="font-[family-name:var(--font-courier)] text-xs md:text-sm text-[#1C1A17]/60 uppercase tracking-widest w-1/2 mb-1 md:mb-0 transition-colors duration-300 group-hover:text-[#8B2E2E]">
+                    {person.role || "---"}
+                  </span>
+                  <span className="font-[family-name:var(--font-oswald)] text-xl md:text-3xl uppercase tracking-wider text-[#1C1A17] transition-colors duration-300 group-hover:text-[#8B2E2E]">
+                    {person.name}
+                  </span>
                 </div>
+              ))}
+              <div className="text-center mt-24 text-[#1C1A17]/50 font-[family-name:var(--font-courier)] text-sm tracking-widest uppercase">
+                ❖ End of Roster
               </div>
-            ))}
+            </div>
           </div>
         </div>
       </section>
@@ -276,6 +338,19 @@ export default function AboutPage() {
         .animate-scratch-jitter { animation: scratch-jitter 0.5s steps(10) infinite; }
         @keyframes bulb-on { 0% { opacity: 0; filter: blur(2px);} 30% { opacity: 0.8; filter: blur(0px); } 40% { opacity: 0.6; filter: blur(1px); } 100% { opacity: 1; filter: blur(0px); } }
         .animate-bulb-on { animation: bulb-on 1.5s ease-out forwards; }
+        
+        /* Credits Roll Animations */
+        .mask-image-fade {
+          mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+          -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+        }
+        @keyframes creditsRoll {
+          0% { transform: translateY(60vh); }
+          100% { transform: translateY(-100%); }
+        }
+        .animate-credits-roll {
+          animation: creditsRoll 60s linear infinite;
+        }
       `}</style>
     </main>
   );

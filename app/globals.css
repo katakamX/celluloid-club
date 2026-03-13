@@ -1,15 +1,13 @@
 @import "tailwindcss";
 
+/* ================= ROOT COLORS ================= */
 :root {
   --background: #ffffff;
   --foreground: #171717;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Fonts injected via next/font */
+  --font-heading: var(--font-oswald);
+  --font-mono: var(--font-courier);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -19,15 +17,14 @@
   }
 }
 
+/* ================= BASE BODY ================= */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-:root {
-  --font-heading: var(--font-oswald);
-  --font-mono: var(--font-courier);
-}
+
+/* ================= FONT UTILITIES ================= */
 .font-heading {
   font-family: var(--font-heading), sans-serif;
 }
@@ -35,6 +32,9 @@ body {
 .font-mono {
   font-family: var(--font-mono), monospace;
 }
+
+/* ================= FILM GRAIN EFFECT ================= */
+/* Apply using className="bg-grain" on main wrappers */
 .bg-grain {
   position: relative;
 }
@@ -46,4 +46,23 @@ body {
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.12'/%3E%3C/svg%3E");
   pointer-events: none;
   z-index: 50;
+}
+
+/* ================= ABOUT US ANIMATIONS ================= */
+@layer utilities {
+  /* Creates a smooth fade-out at the top and bottom of the scrolling list */
+  .mask-image-fade {
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+  }
+}
+
+/* Rolling Credits Animation */
+@keyframes creditsRoll {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(-100%); }
+}
+
+.animate-credits-roll {
+  animation: creditsRoll 60s linear infinite;
 }
