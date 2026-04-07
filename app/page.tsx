@@ -19,6 +19,9 @@ const courier = Courier_Prime({
   variable: "--font-courier",
 });
 
+// Placeholder link for event registration (replace when ready)
+const EVENT_REGISTRATION_URL = "https://example.com/event-registration";
+
 // ================= COMPONENT: TICKET BUTTON =================
 const TicketButton = ({ text, number, href, isPrimary = false, onClick }) => {
   const baseStyles = `
@@ -207,9 +210,9 @@ export default function Home() {
 
       {/* ================= HERO CONTENT ================= */}
       <section className={`min-h-screen flex flex-col items-center justify-center text-center px-6 relative z-10 transition-opacity duration-1000 delay-300 ${mounted ? "opacity-100" : "opacity-0"}`}>
-        <div className="mb-10 relative animate-float-slow">
+        <div className="mb-6 relative animate-float-slow">
           <div className="absolute inset-0 bg-[#EAD7B0] blur-3xl opacity-50 rounded-full transform scale-150" />
-          <Image src="/logo.png" alt="Celluloid Club Logo" width={160} height={160} className="mx-auto relative drop-shadow-xl grayscale-0 hover:grayscale transition-all duration-500" priority />
+          <Image src="/transparent_upscaled.png" alt="Celluloid Club Logo" width={200} height={200} className="mx-auto relative drop-shadow-xl grayscale-0 hover:grayscale transition-all duration-500" priority />
         </div>
         <h1 className={`font-[family-name:var(--font-oswald)] text-6xl md:text-8xl tracking-[0.2em] uppercase text-[#1C1A17] mb-6 relative select-none ${mounted ? 'animate-bulb-on' : 'opacity-0'}`}>
           <span className="relative z-10 mix-blend-hard-light">Celluloid Club</span>
@@ -225,7 +228,7 @@ export default function Home() {
         </p>
         <div className="flex flex-col md:flex-row items-center gap-6 w-full max-w-4xl justify-center">
           <div className="w-full md:w-auto min-w-[200px]"><TicketButton text="Socials" number="084" href="/socials" /></div>
-          <div className="w-full md:w-auto min-w-[240px] transform scale-110 md:mx-4 z-10"><TicketButton text="Watch Now" number="001" isPrimary={true} /></div>
+          <div className="w-full md:w-auto min-w-[240px] transform scale-110 md:mx-4 z-10"><TicketButton text="Register For Infinity" number="001" href={EVENT_REGISTRATION_URL} isPrimary={true} /></div>
           <div className="w-full md:w-auto min-w-[200px]"><TicketButton text="About Us" number="092" href="/about" /></div>
         </div>
       </section>

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   title: "Celluloid Club",
   description: "A collective of filmmakers, cinematographers, and storytellers. Show, don't tell.",
   icons: {
-    icon: "/logo.png", // This makes your logo appear in the browser tab
+    icon: "/transparent_upscaled.png", // This makes your logo appear in the browser tab
   },
 };
 

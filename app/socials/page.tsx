@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { Oswald, Courier_Prime } from "next/font/google";
-import { FaInstagram, FaTwitter, FaVimeoV, FaYoutube } from "react-icons/fa";
+import { FaInstagram, FaYoutube } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
 // ================= FONT SETUP =================
@@ -26,20 +26,6 @@ const socialLinks = [
     url: "https://www.instagram.com/clubcelluloid/",
     ticketNo: "No. 00142",
     icon: <FaInstagram />,
-  },
-  {
-    platform: "Twitter / X",
-    label: "Writers Room",
-    url: "https://twitter.com",
-    ticketNo: "No. 08921",
-    icon: <FaTwitter />,
-  },
-  {
-    platform: "Vimeo",
-    label: "Screening Room",
-    url: "https://vimeo.com",
-    ticketNo: "No. 00551",
-    icon: <FaVimeoV />,
   },
   {
     platform: "YouTube",

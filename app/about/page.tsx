@@ -189,8 +189,8 @@ export default function AboutPage() {
             
             {/* CREDITS SCROLL */}
             <div className="w-full max-w-[600px] shrink-0">
-              <div className="relative h-[min(60vh,500px)] overflow-hidden mask-image-fade group">
-                <div className="absolute top-0 left-0 w-full flex flex-col gap-6 pb-[500px] animate-credits-roll group-hover:[animation-play-state:paused]">
+              <div className="relative h-[min(60vh,500px)] overflow-y-auto mask-image-fade pr-2 club-scrollbar">
+                <div className="w-full flex flex-col gap-6 pb-12">
                   {teamMembers.map((person, idx) => (
                     <div
                       key={idx}
@@ -271,19 +271,10 @@ export default function AboutPage() {
         @keyframes bulb-on { 0% { opacity: 0; filter: blur(2px);} 30% { opacity: 0.8; filter: blur(0px); } 40% { opacity: 0.6; filter: blur(1px); } 100% { opacity: 1; filter: blur(0px); } }
         .animate-bulb-on { animation: bulb-on 1.5s ease-out forwards; }
         
-        /* Credits Roll Animations */
+        /* Credits Scroll Styling */
         .mask-image-fade {
           mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
           -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
-        }
-        
-        /* Container-relative movement (%) starting exactly at 500px to fix delay */
-        @keyframes creditsRoll {
-          0% { transform: translateY(500px); }
-          100% { transform: translateY(-100%); }
-        }
-        .animate-credits-roll {
-          animation: creditsRoll 60s linear infinite;
         }
       `}</style>
     </main>
